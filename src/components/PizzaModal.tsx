@@ -27,13 +27,13 @@ export const PizzaModal: React.FC<PizzaModalProps> = ({
 }) => {
   const { lang, t } = useLanguage();
 
-  if (!isOpen || !pizza) return null;
-
   const [selectedSize, setSelectedSize] = useState<PizzaSize>('30cm');
   const [selectedCrust, setSelectedCrust] = useState<CrustType>('traditional');
   const [selectedToppings, setSelectedToppings] = useState<ExtraTopping[]>([]);
   const [removedIngredients, setRemovedIngredients] = useState<string[]>([]);
   const [quantity, setQuantity] = useState(1);
+
+  if (!isOpen || !pizza) return null;
 
   // Price calculations
   const crustPrice = selectedCrust === 'cheese_crust' ? 120 : 0;

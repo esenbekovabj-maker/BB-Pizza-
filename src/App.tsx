@@ -235,12 +235,15 @@ function AppContent() {
       />
 
       {/* Modals & Drawers */}
-      <PizzaModal
-        pizza={selectedPizza}
-        isOpen={Boolean(selectedPizza)}
-        onClose={() => setSelectedPizza(null)}
-        onAddToCart={handleAddToCart}
-      />
+      {selectedPizza && (
+        <PizzaModal
+          key={selectedPizza.id}
+          pizza={selectedPizza}
+          isOpen
+          onClose={() => setSelectedPizza(null)}
+          onAddToCart={handleAddToCart}
+        />
+      )}
 
       <CartDrawer
         isOpen={isCartOpen}
@@ -254,14 +257,16 @@ function AppContent() {
         onApplyPromo={handleApplyPromo}
       />
 
-      <CheckoutModal
-        isOpen={isCheckoutOpen}
-        onClose={() => setIsCheckoutOpen(false)}
-        items={cart}
-        subtotal={cartSubtotal}
-        discount={discount}
-        onSubmitOrder={handleSubmitOrder}
-      />
+      {isCheckoutOpen && (
+        <CheckoutModal
+          isOpen
+          onClose={() => setIsCheckoutOpen(false)}
+          items={cart}
+          subtotal={cartSubtotal}
+          discount={discount}
+          onSubmitOrder={handleSubmitOrder}
+        />
+      )}
 
       <DeliveryZonesModal
         isOpen={isZonesOpen}

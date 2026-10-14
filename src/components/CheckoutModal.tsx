@@ -33,8 +33,6 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 }) => {
   const { lang, t } = useLanguage();
 
-  if (!isOpen) return null;
-
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('+996 ');
   const [districtId, setDistrictId] = useState(BISHKEK_DISTRICTS[0].id);
@@ -45,6 +43,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const [intercom, setIntercom] = useState('');
   const [comment, setComment] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+
+  if (!isOpen) return null;
 
   const selectedDistrict =
     BISHKEK_DISTRICTS.find((d) => d.id === districtId) || BISHKEK_DISTRICTS[0];
@@ -126,7 +126,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
           {/* Order Summary Strip */}
           <div className="p-3.5 bg-amber-500/10 rounded-xl border border-amber-200/60 flex items-center justify-between text-xs">
             <div>
-              <span className="text-stone-600">{t.totalToPay}:</span>
+              <span className="text-stone-600">{t.totalToPay}</span>
               <div className="text-base font-black text-stone-900 tabular-nums">
                 {totalAmount} {t.currency}
               </div>
