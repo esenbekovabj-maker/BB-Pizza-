@@ -1,0 +1,6 @@
+{
+  "name": "BB Pizza Bishkek",
+  "description": "Онлайн-заказ горячей неаполитанской и авторской пиццы в Бишкеке через WhatsApp (+996 559 444 996) на русском, кыргызском и английском языках.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
