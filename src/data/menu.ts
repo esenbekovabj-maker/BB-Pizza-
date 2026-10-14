@@ -6,7 +6,6 @@ import pepperoniHalalImg from '../assets/images/pizza_pepperoni_toasted_17917222
 import fourCheeseImg from '../assets/images/pizza_four_cheese_toasted_1791722289569.jpg';
 import pizzaChickenPineappleImg from '../assets/images/pizza_chicken_pineapple_toasted_1791722302863.jpg';
 import pizzaChickenMushroomsImg from '../assets/images/pizza_chicken_mushrooms_toasted_1791722319036.jpg';
-import drinkMorseImg from '../assets/images/drink_seabuckthorn_morse_1791718144997.jpg';
 
 export const EXTRA_TOPPINGS: ExtraTopping[] = [
   {
@@ -293,52 +292,24 @@ export const MENU_ITEMS: MenuItem[] = [
     },
     category: 'combos',
     description: {
-      ru: 'Две любимые пиццы 35 см (Пепперони Халяль + Шампиньоны с Курицей) + фирменный облепиховый морс 1л. Выгода 220 сом!',
-      ky: 'Эки сүйүктүү 35 см пицца (Халал Пепперони + Тоок жана Шампиньон) + 1л чычырканак морсу. 220 сом үнөмдөө!',
-      en: 'Two 35cm pizzas (Halal Pepperoni + Chicken & Mushroom) + 1L chilled sea-buckthorn fruit drink. Save 220 som!',
+      ru: 'Две любимые пиццы 35 см (Пепперони Халяль + Шампиньоны с Курицей) + фирменный сырный соус. Выгода 30 сом!',
+      ky: 'Эки сүйүктүү 35 см пицца (Халал Пепперони + Тоок жана Шампиньон) + сыр соусу. 30 сом үнөмдөө!',
+      en: 'Two 35cm pizzas (Halal Pepperoni + Chicken & Mushroom) + special cheese dip. Save 30 som!',
     },
     basePrice: 1490,
     image: heroPizzaImg,
     weightGrams: { '35cm': 1660 },
     sizePrices: { '35cm': 1490 },
     badge: {
-      ru: 'Выгода 13%',
-      ky: 'Пайда 13%',
-      en: 'Save 13%',
+      ru: 'Комбо',
+      ky: 'Комбо',
+      en: 'Combo',
     },
     popular: true,
     ingredients: {
-      ru: ['Пицца Пепперони 35см', 'Пицца Шампиньоны с Курицей 35см', 'Облепиховый морс 1л', 'Фирменный сырный соус'],
-      ky: ['Пепперони пиццасы 35см', 'Тоок жана Шампиньон 35см', 'Чычырканак морсу 1л', 'Сыр соусу'],
-      en: ['Pepperoni pizza 35cm', 'Chicken & Mushroom 35cm', 'Sea buckthorn drink 1L', 'Special cheese dip'],
-    },
-  },
-  {
-    id: 'craft-drinks-set',
-    name: {
-      ru: 'Облепиховый Морс с Иссык-Куля 1л',
-      ky: 'Ысык-Көл Чычырканак Морсу 1л',
-      en: 'Issyk-Kul Sea-Buckthorn Drink 1L',
-    },
-    category: 'drinks',
-    description: {
-      ru: 'Натуральный охлажденный морс из отборной дикой облепихи с побережья Иссык-Куля с медом и мятой. 100% натуральный, без красителей.',
-      ky: 'Ысык-Көлдүн жапайы чычырканагынан бал жана жалбыз менен жасалган табигый морс. 100% табигый, боёксуз.',
-      en: 'Natural refreshing fruit drink made with wild Issyk-Kul sea-buckthorn berries, mountain honey and fresh mint. 100% natural.',
-    },
-    basePrice: 190,
-    image: drinkMorseImg,
-    weightGrams: { '35cm': 1000 },
-    sizePrices: { '35cm': 190 },
-    badge: {
-      ru: 'Натуральный',
-      ky: 'Табигый',
-      en: '100% Natural',
-    },
-    ingredients: {
-      ru: ['Дикая иссык-кульская облепиха', 'Горный мед', 'Родниковая вода', 'Мята'],
-      ky: ['Жапайы Ысык-Көл чычырканагы', 'Тоо балы', 'Булак суусу', 'Жалбыз'],
-      en: ['Wild Issyk-Kul sea buckthorn', 'Mountain honey', 'Spring water', 'Fresh mint'],
+      ru: ['Пицца Пепперони 35см', 'Пицца Шампиньоны с Курицей 35см', 'Фирменный сырный соус'],
+      ky: ['Пепперони пиццасы 35см', 'Тоок жана Шампиньон 35см', 'Сыр соусу'],
+      en: ['Pepperoni pizza 35cm', 'Chicken & Mushroom 35cm', 'Special cheese dip'],
     },
   },
 ];

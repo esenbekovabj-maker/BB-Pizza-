@@ -28,7 +28,6 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
     { id: 'cheese', label: t.catCheese },
     { id: 'spicy', label: t.catSpicy },
     { id: 'combos', label: t.catCombos },
-    { id: 'drinks', label: t.catDrinks },
   ];
 
   const filteredItems = MENU_ITEMS.filter((item) => {

@@ -57,7 +57,6 @@ export interface Translations {
   catCheese: string;
   catSpicy: string;
   catCombos: string;
-  catDrinks: string;
 
   // Customization Modal
   size35: string;
@@ -208,7 +207,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     catCheese: 'Сырные',
     catSpicy: 'Острые',
     catCombos: 'Комбо сеты',
-    catDrinks: 'Напитки',
 
     size35: '35 см',
     crustTitle: '1. Тип бортика',
@@ -352,7 +350,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     catCheese: 'Сырдуу',
     catSpicy: 'Ачуу',
     catCombos: 'Комбо топтомдор',
-    catDrinks: 'Суусундуктар',
 
     size35: '35 см',
     crustTitle: '1. Четинин түрү',
@@ -496,7 +493,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     catCheese: 'Cheese',
     catSpicy: 'Spicy',
     catCombos: 'Combo Sets',
-    catDrinks: 'Drinks',
 
     size35: '35 cm',
     crustTitle: '1. Crust Type',

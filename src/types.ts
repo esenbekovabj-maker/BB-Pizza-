@@ -3,7 +3,7 @@ export type Language = 'ru' | 'ky' | 'en';
 export type PizzaSize = '35cm';
 export type CrustType = 'traditional' | 'thin' | 'cheese_crust';
 
-export type CategoryId = 'all' | 'signature' | 'meat' | 'cheese' | 'spicy' | 'combos' | 'drinks';
+export type CategoryId = 'all' | 'signature' | 'meat' | 'cheese' | 'spicy' | 'combos';
 
 export interface ExtraTopping {
   id: string;
