@@ -9,6 +9,7 @@ import { DeliveryZonesModal } from './components/DeliveryZonesModal';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { Footer } from './components/Footer';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
+import { MENU_ITEMS, EXTRA_TOPPINGS } from './data/menu';
 import {
   CartItem,
   MenuItem,
@@ -17,6 +18,33 @@ import {
   CrustType,
   ExtraTopping,
 } from './types';
+
+// Rebuild a cart saved in localStorage against the current menu, so stale
+// prices, removed items/sizes and old image URLs from a previous version
+// of the site never reach the order.
+const restoreCart = (saved: CartItem[]): CartItem[] =>
+  saved.flatMap((item) => {
+    const menuItem = MENU_ITEMS.find((m) => m.id === item.menuItem?.id);
+    if (!menuItem || !(item.quantity > 0)) return [];
+    const addedToppings = (item.addedToppings || []).flatMap((top) => {
+      const current = EXTRA_TOPPINGS.find((e) => e.id === top.id);
+      return current ? [current] : [];
+    });
+    const crustPrice = item.crust === 'cheese_crust' ? 120 : 0;
+    const unitPrice =
+      menuItem.sizePrices['35cm'] + crustPrice + addedToppings.reduce((acc, top) => acc + top.price, 0);
+    return [
+      {
+        ...item,
+        menuItem,
+        size: '35cm' as PizzaSize,
+        addedToppings,
+        removedIngredients: item.removedIngredients || [],
+        unitPrice,
+        totalPrice: unitPrice * item.quantity,
+      },
+    ];
+  });
 import { CheckCircle2 } from 'lucide-react';
 
 function AppContent() {
@@ -26,7 +54,7 @@ function AppContent() {
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
       const saved = localStorage.getItem('bb_pizza_cart');
-      return saved ? JSON.parse(saved) : [];
+      return saved ? restoreCart(JSON.parse(saved)) : [];
     } catch {
       return [];
     }
@@ -39,7 +67,7 @@ function AppContent() {
   const [isZonesOpen, setIsZonesOpen] = useState(false);
 
   // Discount & Toast
-  const [discount, setDiscount] = useState(0);
+  const [promoActive, setPromoActive] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Sync to local storage
@@ -59,6 +87,8 @@ function AppContent() {
   // Cart calculations
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
   const cartSubtotal = cart.reduce((acc, item) => acc + item.totalPrice, 0);
+  // 10% promo discount, recalculated whenever the cart changes
+  const discount = promoActive ? Math.round(cartSubtotal * 0.1) : 0;
 
   // Add customized pizza to cart
   const handleAddToCart = (params: {
@@ -165,8 +195,7 @@ function AppContent() {
   const handleApplyPromo = (code: string): boolean => {
     const clean = code.trim().toUpperCase();
     if (clean === 'BBPIZZA' || clean === 'BISHKEK' || clean === 'BB10') {
-      const discountVal = Math.round(cartSubtotal * 0.1);
-      setDiscount(discountVal);
+      setPromoActive(true);
       showToast(t.promoAppliedSuccess);
       return true;
     }
@@ -181,7 +210,7 @@ function AppContent() {
   // Order submission via WhatsApp
   const handleSubmitOrder = (_customer: OrderCustomer, _deliveryFee: number) => {
     setCart([]);
-    setDiscount(0);
+    setPromoActive(false);
     showToast(t.orderSentToast);
   };
 
@@ -274,7 +303,7 @@ function AppContent() {
       />
 
       {/* Floating WhatsApp Quick Order Button */}
-      <FloatingWhatsApp cart={cart} cartTotal={cartSubtotal} />
+      <FloatingWhatsApp cart={cart} cartTotal={cartSubtotal} discount={discount} />
     </div>
   );
 }

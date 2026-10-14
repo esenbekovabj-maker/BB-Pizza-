@@ -7,14 +7,16 @@ import { useLanguage } from '../context/LanguageContext';
 interface FloatingWhatsAppProps {
   cart: CartItem[];
   cartTotal: number;
+  discount: number;
 }
 
-export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ cart, cartTotal }) => {
+export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ cart, cartTotal, discount }) => {
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   const { lang, t } = useLanguage();
 
   const deliveryFee = cartTotal >= 500 ? 0 : 70;
-  const targetUrl = createWhatsAppOrderUrl(cart, cartTotal, deliveryFee, null, lang);
+  const totalToPay = Math.max(0, cartTotal - discount + deliveryFee);
+  const targetUrl = createWhatsAppOrderUrl(cart, totalToPay, deliveryFee, null, lang, discount);
 
   return (
     <aside aria-label={t.orderWhatsApp} className="fixed bottom-6 left-6 z-40 flex items-center gap-3">

@@ -54,7 +54,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     }
   };
 
-  const directWhatsAppUrl = createWhatsAppOrderUrl(items, finalTotal, deliveryCost, null, lang);
+  const directWhatsAppUrl = createWhatsAppOrderUrl(items, finalTotal, deliveryCost, null, lang, discount);
 
   return (
     <div

@@ -82,7 +82,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     };
 
     // Generate WhatsApp URL with all items and customer delivery details
-    const targetUrl = createWhatsAppOrderUrl(items, totalAmount, deliveryFee, customer, lang);
+    const targetUrl = createWhatsAppOrderUrl(items, totalAmount, deliveryFee, customer, lang, discount);
 
     // Open WhatsApp
     window.open(targetUrl, '_blank', 'noopener,noreferrer');

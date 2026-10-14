@@ -8,7 +8,8 @@ export const createWhatsAppOrderUrl = (
   total: number,
   deliveryFee: number,
   customer?: Partial<OrderCustomer> | null,
-  lang: Language = 'ru'
+  lang: Language = 'ru',
+  discount = 0
 ): string => {
   if (items.length === 0) {
     let defaultText = `Здравствуйте, BB Pizza! 🍕 Хочу сделать заказ пиццы с доставкой по Бишкеку.`;
@@ -58,6 +59,11 @@ export const createWhatsAppOrderUrl = (
   });
 
   message += `━━━━━━━━━━━━━━━\n`;
+  if (discount > 0) {
+    message += `🏷 *${
+      lang === 'ky' ? 'Промокод боюнча арзандатуу' : lang === 'en' ? 'Promo discount' : 'Скидка по промокоду'
+    }:* -${discount} сом\n`;
+  }
   message += `💰 *${lang === 'ky' ? 'Жалпы суммасы' : lang === 'en' ? 'Total to pay' : 'Сумма к оплате'}:* ${total} сом\n`;
   message += `🚚 *${lang === 'ky' ? 'Жеткирүү' : lang === 'en' ? 'Delivery' : 'Доставка'}:* ${
     deliveryFee === 0 ? (lang === 'ky' ? 'Акысыз' : lang === 'en' ? 'Free' : 'Бесплатно') : `${deliveryFee} сом`
