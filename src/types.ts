@@ -1,6 +1,6 @@
 export type Language = 'ru' | 'ky' | 'en';
 
-export type PizzaSize = '25cm' | '30cm' | '35cm';
+export type PizzaSize = '35cm';
 export type CrustType = 'traditional' | 'thin' | 'cheese_crust';
 
 export type CategoryId = 'all' | 'signature' | 'meat' | 'cheese' | 'spicy' | 'combos' | 'drinks';
@@ -18,16 +18,8 @@ export interface MenuItem {
   description: Record<Language, string>;
   basePrice: number;
   image: string;
-  weightGrams: {
-    '25cm': number;
-    '30cm': number;
-    '35cm': number;
-  };
-  sizePrices: {
-    '25cm': number;
-    '30cm': number;
-    '35cm': number;
-  };
+  weightGrams: Record<PizzaSize, number>;
+  sizePrices: Record<PizzaSize, number>;
   badge?: Record<Language, string>;
   spiciness?: number; // 0, 1, 2
   isHalal?: boolean;

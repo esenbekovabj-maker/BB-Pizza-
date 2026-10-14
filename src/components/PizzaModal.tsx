@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Plus, Minus, Check, Sparkles } from 'lucide-react';
 import { MenuItem, PizzaSize, CrustType, ExtraTopping } from '../types';
 import { EXTRA_TOPPINGS } from '../data/menu';
+import { useEscapeKey } from '../hooks/useEscapeKey';
 import { useLanguage } from '../context/LanguageContext';
 
 interface PizzaModalProps {
@@ -26,8 +27,9 @@ export const PizzaModal: React.FC<PizzaModalProps> = ({
   onAddToCart,
 }) => {
   const { lang, t } = useLanguage();
+  useEscapeKey(onClose, isOpen);
 
-  const [selectedSize, setSelectedSize] = useState<PizzaSize>('30cm');
+  const selectedSize: PizzaSize = '35cm';
   const [selectedCrust, setSelectedCrust] = useState<CrustType>('traditional');
   const [selectedToppings, setSelectedToppings] = useState<ExtraTopping[]>([]);
   const [removedIngredients, setRemovedIngredients] = useState<string[]>([]);
@@ -76,7 +78,10 @@ export const PizzaModal: React.FC<PizzaModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/70 backdrop-blur-sm animate-fade-in">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/70 backdrop-blur-sm animate-fade-in"
+      onClick={onClose}
+    >
       <div
         className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-stone-200 overflow-hidden max-h-[92vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
@@ -115,39 +120,8 @@ export const PizzaModal: React.FC<PizzaModalProps> = ({
                 {pizzaDesc}
               </p>
               <div className="text-xs text-stone-400">
-                {pizza.weightGrams[selectedSize]} {t.grams} · {selectedSize}
+                {pizza.weightGrams[selectedSize]} {t.grams} · {t.size35}
               </div>
-            </div>
-          </div>
-
-          {/* Size Selection */}
-          <div className="space-y-2.5">
-            <label className="text-xs font-bold uppercase tracking-wider text-stone-500 block">
-              {t.selectSize}
-            </label>
-            <div className="grid grid-cols-3 gap-2.5">
-              {(['25cm', '30cm', '35cm'] as PizzaSize[]).map((size) => (
-                <button
-                  key={size}
-                  type="button"
-                  onClick={() => setSelectedSize(size)}
-                  className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
-                    selectedSize === size
-                      ? 'border-amber-500 bg-amber-50/60 ring-1 ring-amber-500'
-                      : 'border-stone-200 hover:border-stone-300'
-                  }`}
-                >
-                  <div className="text-sm font-bold text-stone-900">
-                    {size === '25cm' ? t.size25 : size === '30cm' ? t.size30 : t.size35}
-                  </div>
-                  <div className="text-[11px] text-stone-500 mt-0.5">
-                    {size === '25cm' ? t.size25Sub : size === '30cm' ? t.size30Sub : t.size35Sub}
-                  </div>
-                  <div className="text-xs font-black text-amber-700 mt-1.5 tabular-nums">
-                    {pizza.sizePrices[size]} {t.currency}
-                  </div>
-                </button>
-              ))}
             </div>
           </div>
 

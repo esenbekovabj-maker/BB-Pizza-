@@ -31,13 +31,7 @@ export const createWhatsAppOrderUrl = (
 
   items.forEach((item, index) => {
     const itemName = item.menuItem.name[lang] || item.menuItem.name['ru'];
-    let sizeLabel =
-      item.size === '25cm' ? '25 см (Стандарт)' : item.size === '30cm' ? '30 см (Средняя)' : '35 см (Большая)';
-    if (lang === 'ky') {
-      sizeLabel = item.size === '25cm' ? '25 см (Стандарт)' : item.size === '30cm' ? '30 см (Орточо)' : '35 см (Чоң)';
-    } else if (lang === 'en') {
-      sizeLabel = item.size === '25cm' ? '25 cm (Regular)' : item.size === '30cm' ? '30 cm (Medium)' : '35 cm (Large)';
-    }
+    const sizeLabel = lang === 'en' ? '35 cm' : '35 см';
 
     const crustLabel =
       item.crust === 'cheese_crust'

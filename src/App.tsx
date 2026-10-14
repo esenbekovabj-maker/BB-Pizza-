@@ -107,16 +107,16 @@ function AppContent() {
     showToast(`«${itemName}» ${t.addedToCartToast}`);
   };
 
-  // Quick 1-click add standard 30cm pizza
+  // Quick 1-click add 35cm pizza
   const handleQuickAdd = (menuItem: MenuItem) => {
     handleAddToCart({
       menuItem,
-      size: '30cm',
+      size: '35cm',
       crust: 'traditional',
       addedToppings: [],
       removedIngredients: [],
       quantity: 1,
-      unitPrice: menuItem.sizePrices['30cm'],
+      unitPrice: menuItem.sizePrices['35cm'],
     });
   };
 

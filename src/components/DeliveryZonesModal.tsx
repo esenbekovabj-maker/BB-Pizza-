@@ -2,6 +2,7 @@ import React from 'react';
 import { X, MapPin, Clock, ShieldCheck, Zap, MessageCircle } from 'lucide-react';
 import { BISHKEK_DISTRICTS, BB_KITCHEN_LOCATION } from '../data/bishkekDistricts';
 import { WHATSAPP_PHONE_RAW, WHATSAPP_PHONE_FORMATTED } from '../utils/whatsapp';
+import { useEscapeKey } from '../hooks/useEscapeKey';
 import { useLanguage } from '../context/LanguageContext';
 
 interface DeliveryZonesModalProps {
@@ -14,11 +15,15 @@ export const DeliveryZonesModal: React.FC<DeliveryZonesModalProps> = ({
   onClose,
 }) => {
   const { lang, t } = useLanguage();
+  useEscapeKey(onClose, isOpen);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-stone-950/70 backdrop-blur-sm animate-fade-in">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-stone-950/70 backdrop-blur-sm animate-fade-in"
+      onClick={onClose}
+    >
       <div
         className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-stone-200 overflow-hidden max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}

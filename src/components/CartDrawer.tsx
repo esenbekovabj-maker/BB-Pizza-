@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Trash2, Plus, Minus, ArrowRight, ShoppingBag, Tag, MessageCircle } from 'lucide-react';
 import { CartItem } from '../types';
 import { createWhatsAppOrderUrl, WHATSAPP_PHONE_FORMATTED } from '../utils/whatsapp';
+import { useEscapeKey } from '../hooks/useEscapeKey';
 import { useLanguage } from '../context/LanguageContext';
 
 interface CartDrawerProps {
@@ -32,6 +33,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   const [promoError, setPromoError] = useState('');
   const [promoApplied, setPromoApplied] = useState(false);
 
+  useEscapeKey(onClose, isOpen);
+
   if (!isOpen) return null;
 
   const deliveryThreshold = 500;
@@ -54,7 +57,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   const directWhatsAppUrl = createWhatsAppOrderUrl(items, finalTotal, deliveryCost, null, lang);
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end bg-stone-950/60 backdrop-blur-xs animate-fade-in">
+    <div
+      className="fixed inset-0 z-50 flex justify-end bg-stone-950/60 backdrop-blur-xs animate-fade-in"
+      onClick={onClose}
+    >
       <div
         className="w-full max-w-md bg-white h-full shadow-2xl flex flex-col border-l border-stone-200"
         onClick={(e) => e.stopPropagation()}
@@ -109,8 +115,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
           ) : (
             items.map((item) => {
               const itemName = item.menuItem.name[lang] || item.menuItem.name['ru'];
-              const sizeLabel =
-                item.size === '25cm' ? t.size25 : item.size === '30cm' ? t.size30 : t.size35;
+              const sizeLabel = t.size35;
 
               return (
                 <div

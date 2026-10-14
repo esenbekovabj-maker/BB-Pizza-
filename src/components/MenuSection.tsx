@@ -161,7 +161,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
                   <div>
                     <span className="text-xs text-stone-400 font-medium">{t.fromPrice}</span>
                     <div className="text-xl font-black text-stone-900 tabular-nums">
-                      {item.sizePrices['30cm']} <span className="text-xs font-bold text-stone-500">{t.currency}</span>
+                      {item.sizePrices['35cm']} <span className="text-xs font-bold text-stone-500">{t.currency}</span>
                     </div>
                   </div>
 

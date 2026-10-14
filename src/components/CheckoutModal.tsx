@@ -12,6 +12,7 @@ import {
 import { OrderCustomer, CartItem } from '../types';
 import { BISHKEK_DISTRICTS } from '../data/bishkekDistricts';
 import { createWhatsAppOrderUrl, WHATSAPP_PHONE_FORMATTED } from '../utils/whatsapp';
+import { useEscapeKey } from '../hooks/useEscapeKey';
 import { useLanguage } from '../context/LanguageContext';
 
 interface CheckoutModalProps {
@@ -43,6 +44,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const [intercom, setIntercom] = useState('');
   const [comment, setComment] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  useEscapeKey(onClose, isOpen);
 
   if (!isOpen) return null;
 

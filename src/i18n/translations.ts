@@ -60,13 +60,7 @@ export interface Translations {
   catDrinks: string;
 
   // Customization Modal
-  selectSize: string;
-  size25: string;
-  size30: string;
   size35: string;
-  size25Sub: string;
-  size30Sub: string;
-  size35Sub: string;
   crustTitle: string;
   crustTraditional: string;
   crustThin: string;
@@ -216,20 +210,14 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     catCombos: 'Комбо сеты',
     catDrinks: 'Напитки',
 
-    selectSize: '1. Размер пиццы',
-    size25: '25 см',
-    size30: '30 см',
     size35: '35 см',
-    size25Sub: 'Стандарт (1-2 чел)',
-    size30Sub: 'Средняя (2-3 чел)',
-    size35Sub: 'Большая (3-4 чел)',
-    crustTitle: '2. Тип бортика',
+    crustTitle: '1. Тип бортика',
     crustTraditional: 'Традиционный',
     crustThin: 'Тонкое тесто',
     crustCheese: 'Сырный бортик',
     cheeseCrustBadge: '+120 сом',
-    extraToppingsTitle: '3. Добавить топпинги',
-    removeIngredientsTitle: '4. Убрать ингредиенты',
+    extraToppingsTitle: '2. Добавить топпинги',
+    removeIngredientsTitle: '3. Убрать ингредиенты',
     quantityTitle: 'Количество',
     addToCartBtn: 'Добавить в корзину',
 
@@ -366,20 +354,14 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     catCombos: 'Комбо топтомдор',
     catDrinks: 'Суусундуктар',
 
-    selectSize: '1. Пиццанын өлчөмү',
-    size25: '25 см',
-    size30: '30 см',
     size35: '35 см',
-    size25Sub: 'Стандарт (1-2 киши)',
-    size30Sub: 'Орточо (2-3 киши)',
-    size35Sub: 'Чоң (3-4 киши)',
-    crustTitle: '2. Четинин түрү',
+    crustTitle: '1. Четинин түрү',
     crustTraditional: 'Салттуу',
     crustThin: 'Жука камыр',
     crustCheese: 'Сырдуу чет',
     cheeseCrustBadge: '+120 сом',
-    extraToppingsTitle: '3. Кошумча кошуу',
-    removeIngredientsTitle: '4. Ингредиенттерди алып салуу',
+    extraToppingsTitle: '2. Кошумча кошуу',
+    removeIngredientsTitle: '3. Ингредиенттерди алып салуу',
     quantityTitle: 'Саны',
     addToCartBtn: 'Себетке кошуу',
 
@@ -516,20 +498,14 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     catCombos: 'Combo Sets',
     catDrinks: 'Drinks',
 
-    selectSize: '1. Pizza Size',
-    size25: '25 cm',
-    size30: '30 cm',
     size35: '35 cm',
-    size25Sub: 'Regular (1-2 persons)',
-    size30Sub: 'Medium (2-3 persons)',
-    size35Sub: 'Large (3-4 persons)',
-    crustTitle: '2. Crust Type',
+    crustTitle: '1. Crust Type',
     crustTraditional: 'Traditional',
     crustThin: 'Thin Crust',
     crustCheese: 'Cheese Stuffed Crust',
     cheeseCrustBadge: '+120 som',
-    extraToppingsTitle: '3. Add Extra Toppings',
-    removeIngredientsTitle: '4. Remove Ingredients',
+    extraToppingsTitle: '2. Add Extra Toppings',
+    removeIngredientsTitle: '3. Remove Ingredients',
     quantityTitle: 'Quantity',
     addToCartBtn: 'Add to Cart',
 
