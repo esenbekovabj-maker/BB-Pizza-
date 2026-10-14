@@ -4,7 +4,7 @@ export interface BishkekDistrict {
   id: string;
   name: Record<Language, string>;
   zone: 'green' | 'yellow' | 'orange';
-  minOrderSom: number;
+  freeDeliveryFromSom: number; // delivery is free from this order subtotal
   deliveryTimeMin: number;
   deliveryCostSom: number;
   description: Record<Language, string>;
@@ -20,9 +20,9 @@ export const BISHKEK_DISTRICTS: BishkekDistrict[] = [
       en: 'Center (Ala-Too Sq, Chuy / Razzakov / Panfilov)',
     },
     zone: 'green',
-    minOrderSom: 500,
+    freeDeliveryFromSom: 500,
     deliveryTimeMin: 25,
-    deliveryCostSom: 0,
+    deliveryCostSom: 50,
     description: {
       ru: 'Зона экспресс-доставки — до 30 минут',
       ky: 'Экспресс жеткирүү аймагы — 30 мүнөткө чейин',
@@ -38,9 +38,9 @@ export const BISHKEK_DISTRICTS: BishkekDistrict[] = [
       en: 'Vostok-5 district / East Chuy Ave',
     },
     zone: 'green',
-    minOrderSom: 500,
+    freeDeliveryFromSom: 500,
     deliveryTimeMin: 30,
-    deliveryCostSom: 0,
+    deliveryCostSom: 50,
     description: {
       ru: 'Бесплатная доставка от 500 сом',
       ky: '500 сомдон жогору акысыз жеткирүү',
@@ -56,7 +56,7 @@ export const BISHKEK_DISTRICTS: BishkekDistrict[] = [
       en: 'Djal district (Upper / Lower, Tynaliev St)',
     },
     zone: 'yellow',
-    minOrderSom: 600,
+    freeDeliveryFromSom: 600,
     deliveryTimeMin: 35,
     deliveryCostSom: 70,
     description: {
@@ -74,7 +74,7 @@ export const BISHKEK_DISTRICTS: BishkekDistrict[] = [
       en: 'Asanbay district / 11, 12 mkr (South Highway)',
     },
     zone: 'yellow',
-    minOrderSom: 600,
+    freeDeliveryFromSom: 600,
     deliveryTimeMin: 35,
     deliveryCostSom: 70,
     description: {
@@ -92,7 +92,7 @@ export const BISHKEK_DISTRICTS: BishkekDistrict[] = [
       en: 'Districts 7, 8, 9, 10 (Yunusaliev / Donetskaya)',
     },
     zone: 'yellow',
-    minOrderSom: 600,
+    freeDeliveryFromSom: 600,
     deliveryTimeMin: 32,
     deliveryCostSom: 50,
     description: {
@@ -110,9 +110,9 @@ export const BISHKEK_DISTRICTS: BishkekDistrict[] = [
       en: 'Polytech / Ch. Aitmatov Ave / Akhunbaev St',
     },
     zone: 'green',
-    minOrderSom: 500,
+    freeDeliveryFromSom: 500,
     deliveryTimeMin: 28,
-    deliveryCostSom: 0,
+    deliveryCostSom: 50,
     description: {
       ru: 'Центрально-южный сектор',
       ky: 'Борбордук-түштүк сектор',
@@ -128,7 +128,7 @@ export const BISHKEK_DISTRICTS: BishkekDistrict[] = [
       en: 'Kyzyl-Asker / West Bus Station',
     },
     zone: 'orange',
-    minOrderSom: 700,
+    freeDeliveryFromSom: 800,
     deliveryTimeMin: 40,
     deliveryCostSom: 100,
     description: {
@@ -146,7 +146,7 @@ export const BISHKEK_DISTRICTS: BishkekDistrict[] = [
       en: 'North (Jibek Jolu / Karagachevaya grove)',
     },
     zone: 'orange',
-    minOrderSom: 700,
+    freeDeliveryFromSom: 800,
     deliveryTimeMin: 40,
     deliveryCostSom: 90,
     description: {
@@ -157,6 +157,15 @@ export const BISHKEK_DISTRICTS: BishkekDistrict[] = [
     coords: { x: 55, y: 22 },
   },
 ];
+
+// Free from the zone threshold (500 center / 600 micro-districts / 800 outskirts)
+export const getDeliveryFee = (district: BishkekDistrict, subtotal: number): number =>
+  subtotal >= district.freeDeliveryFromSom ? 0 : district.deliveryCostSom;
+
+// Above this subtotal delivery is free in every district
+export const FREE_DELIVERY_EVERYWHERE_SOM = Math.max(
+  ...BISHKEK_DISTRICTS.map((d) => d.freeDeliveryFromSom)
+);
 
 export const BB_KITCHEN_LOCATION = {
   name: 'BB Pizza (пер. Геологический, 3 / ул. Ибраимова)',

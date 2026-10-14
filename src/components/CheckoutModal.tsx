@@ -10,7 +10,7 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { OrderCustomer, CartItem } from '../types';
-import { BISHKEK_DISTRICTS } from '../data/bishkekDistricts';
+import { BISHKEK_DISTRICTS, getDeliveryFee } from '../data/bishkekDistricts';
 import { createWhatsAppOrderUrl, WHATSAPP_PHONE_FORMATTED } from '../utils/whatsapp';
 import { useEscapeKey } from '../hooks/useEscapeKey';
 import { useLanguage } from '../context/LanguageContext';
@@ -50,7 +50,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
   const selectedDistrict =
     BISHKEK_DISTRICTS.find((d) => d.id === districtId) || BISHKEK_DISTRICTS[0];
-  const deliveryFee = subtotal >= 500 ? 0 : selectedDistrict.deliveryCostSom;
+  const deliveryFee = getDeliveryFee(selectedDistrict, subtotal);
   const totalAmount = Math.max(0, subtotal - discount + deliveryFee);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -198,7 +198,9 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 {BISHKEK_DISTRICTS.map((d) => (
                   <option key={d.id} value={d.id}>
                     {d.name[lang] || d.name['ru']} — {d.deliveryTimeMin} {t.min} (
-                    {d.deliveryCostSom === 0 ? t.free : `${d.deliveryCostSom} ${t.currency}`})
+                    {getDeliveryFee(d, subtotal) === 0
+                      ? t.free
+                      : `${d.deliveryCostSom} ${t.currency}, ${t.freeFrom} ${d.freeDeliveryFromSom}`})
                   </option>
                 ))}
               </select>

@@ -6,7 +6,7 @@ export const WHATSAPP_PHONE_FORMATTED = '+996 (559) 444-996';
 export const createWhatsAppOrderUrl = (
   items: CartItem[],
   total: number,
-  deliveryFee: number,
+  deliveryFee: number | null, // null: district not chosen yet
   customer?: Partial<OrderCustomer> | null,
   lang: Language = 'ru',
   discount = 0
@@ -66,7 +66,19 @@ export const createWhatsAppOrderUrl = (
   }
   message += `💰 *${lang === 'ky' ? 'Жалпы суммасы' : lang === 'en' ? 'Total to pay' : 'Сумма к оплате'}:* ${total} сом\n`;
   message += `🚚 *${lang === 'ky' ? 'Жеткирүү' : lang === 'en' ? 'Delivery' : 'Доставка'}:* ${
-    deliveryFee === 0 ? (lang === 'ky' ? 'Акысыз' : lang === 'en' ? 'Free' : 'Бесплатно') : `${deliveryFee} сом`
+    deliveryFee === null
+      ? lang === 'ky'
+        ? 'райондон көз каранды'
+        : lang === 'en'
+        ? 'depends on district'
+        : 'по району, уточнит оператор'
+      : deliveryFee === 0
+      ? lang === 'ky'
+        ? 'Акысыз'
+        : lang === 'en'
+        ? 'Free'
+        : 'Бесплатно'
+      : `${deliveryFee} сом`
   }\n`;
 
   if (customer && (customer.name || customer.street || customer.district)) {

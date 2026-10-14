@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Trash2, Plus, Minus, ArrowRight, ShoppingBag, Tag, MessageCircle } from 'lucide-react';
 import { CartItem } from '../types';
 import { createWhatsAppOrderUrl, WHATSAPP_PHONE_FORMATTED } from '../utils/whatsapp';
+import { FREE_DELIVERY_EVERYWHERE_SOM } from '../data/bishkekDistricts';
 import { useEscapeKey } from '../hooks/useEscapeKey';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -37,10 +38,11 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
   if (!isOpen) return null;
 
-  const deliveryThreshold = 500;
+  // District is chosen at checkout, so here delivery is only known once it is free everywhere
+  const deliveryThreshold = FREE_DELIVERY_EVERYWHERE_SOM;
   const isFreeDelivery = subtotal >= deliveryThreshold;
-  const deliveryCost = items.length === 0 ? 0 : isFreeDelivery ? 0 : 70;
-  const finalTotal = Math.max(0, subtotal - discount + deliveryCost);
+  const deliveryCost = isFreeDelivery ? 0 : null;
+  const finalTotal = Math.max(0, subtotal - discount);
 
   const handleApplyPromo = (e: React.FormEvent) => {
     e.preventDefault();
@@ -239,7 +241,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               <div className="flex justify-between">
                 <span>{t.deliveryTitle}</span>
                 <span className="tabular-nums font-semibold">
-                  {deliveryCost === 0 ? t.free : `${deliveryCost} ${t.currency}`}
+                  {deliveryCost === 0 ? t.free : t.deliveryByDistrict}
                 </span>
               </div>
               <div className="h-px bg-stone-200 my-1" />

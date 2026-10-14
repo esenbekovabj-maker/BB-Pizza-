@@ -12,6 +12,8 @@ export interface Translations {
   cm: string;
   grams: string;
   free: string;
+  freeFrom: string;
+  deliveryByDistrict: string;
   min: string;
 
   // Header & Nav
@@ -163,6 +165,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     cm: 'см',
     grams: 'г',
     free: 'Бесплатно',
+    freeFrom: 'бесплатно от',
+    deliveryByDistrict: 'По району, при оформлении',
     min: 'мин',
 
     menu: 'Меню',
@@ -222,8 +226,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     yourCart: 'Ваша корзина',
     cartEmpty: 'Корзина пуста',
     cartEmptySub: 'Выберите ароматную горячую пиццу из меню выше',
-    freeDeliveryActive: '✓ Бесплатная доставка по Бишкеку активирована!',
-    freeDeliveryRemaining: 'До бесплатной доставки не хватает',
+    freeDeliveryActive: '✓ Бесплатная доставка по всему Бишкеку!',
+    freeDeliveryRemaining: 'До бесплатной доставки по всему Бишкеку не хватает',
     promoPlaceholder: 'Промокод (напр. BBPIZZA)',
     promoApplyBtn: 'Применить',
     promoAppliedSuccess: '✓ Скидка 10% успешно применена!',
@@ -270,7 +274,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     orangeZoneTime: '35-40 минут',
     deliveryRulesTitle: 'Правила и стандарты доставки:',
     deliveryRule1: 'Пицца доставляется в термосумках с постоянным подогревом 65°C.',
-    deliveryRule2: 'Бесплатная доставка при заказе от 500 сом по основным районам.',
+    deliveryRule2: 'Бесплатная доставка: центр — от 500 сом, микрорайоны — от 600 сом, окраины — от 800 сом.',
     deliveryRule3: 'Оплата наличными курьеру или переводом при получении.',
     minOrderLabel: 'Мин. заказ',
     timeLabel: 'Время',
@@ -306,6 +310,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     cm: 'см',
     grams: 'г',
     free: 'Акысыз',
+    freeFrom: 'акысыз, баштап',
+    deliveryByDistrict: 'Райондон көз каранды',
     min: 'мүн',
 
     menu: 'Меню',
@@ -366,7 +372,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     cartEmpty: 'Себет бош',
     cartEmptySub: 'Жогорудагы менюдан жыпар жыттуу ысык пиццаны тандаңыз',
     freeDeliveryActive: '✓ Бишкек боюнча акысыз жеткирүү иштетилди!',
-    freeDeliveryRemaining: 'Акысыз жеткирүүгө чейин жетпейт:',
+    freeDeliveryRemaining: 'Бүт Бишкек боюнча акысыз жеткирүүгө чейин жетпейт:',
     promoPlaceholder: 'Промокод (мис. BBPIZZA)',
     promoApplyBtn: 'Колдонуу',
     promoAppliedSuccess: '✓ 10% арзандатуу ийгиликтүү колдонулду!',
@@ -413,7 +419,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     orangeZoneTime: '35-40 мүнөт',
     deliveryRulesTitle: 'Жеткирүү эрежелери жана стандарттары:',
     deliveryRule1: 'Пицца 65°C дайыма жылуу сактаган термосумкаларда жеткирилет.',
-    deliveryRule2: 'Негизги райондорго 500 сомдон жогору буйрутмаларга акысыз жеткирүү.',
+    deliveryRule2: 'Акысыз жеткирүү: борбор — 500 сомдон, кичирайондор — 600 сомдон, чет жакалар — 800 сомдон.',
     deliveryRule3: 'Курьерге накталай акча же алгандан кийин которуу аркылуу төлөө.',
     minOrderLabel: 'Мин. буйрутма',
     timeLabel: 'Убактысы',
@@ -449,6 +455,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     cm: 'cm',
     grams: 'g',
     free: 'Free',
+    freeFrom: 'free from',
+    deliveryByDistrict: 'Depends on district',
     min: 'min',
 
     menu: 'Menu',
@@ -509,7 +517,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     cartEmpty: 'Cart is empty',
     cartEmptySub: 'Select delicious hot pizza from our menu above',
     freeDeliveryActive: '✓ Free Bishkek delivery unlocked!',
-    freeDeliveryRemaining: 'Add more for free delivery:',
+    freeDeliveryRemaining: 'Add more for free delivery anywhere in Bishkek:',
     promoPlaceholder: 'Promo code (e.g. BBPIZZA)',
     promoApplyBtn: 'Apply',
     promoAppliedSuccess: '✓ 10% discount applied!',
@@ -556,7 +564,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     orangeZoneTime: '35-40 min',
     deliveryRulesTitle: 'Delivery standards & terms:',
     deliveryRule1: 'All pizzas are transported in 65°C constantly heated thermal bags.',
-    deliveryRule2: 'Free delivery on orders from 500 som across key districts.',
+    deliveryRule2: 'Free delivery: center from 500 som, micro-districts from 600 som, outskirts from 800 som.',
     deliveryRule3: 'Payment in cash to courier or via mobile transfer upon arrival.',
     minOrderLabel: 'Min. Order',
     timeLabel: 'Est. Time',

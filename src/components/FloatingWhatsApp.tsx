@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MessageCircle } from 'lucide-react';
 import { CartItem } from '../types';
 import { createWhatsAppOrderUrl, WHATSAPP_PHONE_FORMATTED } from '../utils/whatsapp';
+import { FREE_DELIVERY_EVERYWHERE_SOM } from '../data/bishkekDistricts';
 import { useLanguage } from '../context/LanguageContext';
 
 interface FloatingWhatsAppProps {
@@ -14,8 +15,8 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ cart, cartTo
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   const { lang, t } = useLanguage();
 
-  const deliveryFee = cartTotal >= 500 ? 0 : 70;
-  const totalToPay = Math.max(0, cartTotal - discount + deliveryFee);
+  const deliveryFee = cartTotal >= FREE_DELIVERY_EVERYWHERE_SOM ? 0 : null;
+  const totalToPay = Math.max(0, cartTotal - discount);
   const targetUrl = createWhatsAppOrderUrl(cart, totalToPay, deliveryFee, null, lang, discount);
 
   return (

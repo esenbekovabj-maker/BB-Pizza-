@@ -112,13 +112,9 @@ export const DeliveryZonesModal: React.FC<DeliveryZonesModalProps> = ({
                     </span>
 
                     <span
-                      className={`px-2.5 py-1 rounded-md font-bold text-[11px] ${
-                        district.deliveryCostSom === 0
-                          ? 'bg-emerald-100 text-emerald-800'
-                          : 'bg-stone-100 text-stone-800'
-                      }`}
+                      className="px-2.5 py-1 rounded-md font-bold text-[11px] bg-stone-100 text-stone-800"
                     >
-                      {district.deliveryCostSom === 0 ? t.free : `${district.deliveryCostSom} ${t.currency}`}
+                      {district.deliveryCostSom} {t.currency} · {t.freeFrom} {district.freeDeliveryFromSom}
                     </span>
                   </div>
                 </div>
