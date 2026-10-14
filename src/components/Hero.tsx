@@ -126,7 +126,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToMenu, onOpenZones }) => {
                 </div>
                 <div className="text-right">
                   <span className="text-xs text-stone-400">{t.fromPrice}</span>
-                  <div className="text-lg font-extrabold text-amber-400 tabular-nums">740 {t.currency}</div>
+                  <div className="text-lg font-extrabold text-amber-400 tabular-nums">450 {t.currency}</div>
                 </div>
               </button>
             </div>
